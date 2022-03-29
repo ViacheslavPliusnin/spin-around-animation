@@ -138,7 +138,6 @@ const App: React.FC = (): JSX.Element => {
     gsap.registerPlugin(ScrollTrigger);
 
     const scrollTrigger = {
-      markers: true,
       trigger: containerRef.current,
       start: '50% 50%',
       end: 'bottom top',
@@ -215,6 +214,11 @@ const App: React.FC = (): JSX.Element => {
         '100%': { yPercent: 0, opacity: 1 },
       },
     });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      gsap.globalTimeline.getChildren().forEach((t) => t.kill());
+    };
   }, []);
 
   return (
