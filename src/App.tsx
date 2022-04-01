@@ -91,37 +91,8 @@ const Text = styled.p<{ isAbsolutePosition?: boolean }>`
   max-width: 650px;
 `;
 
-const brandsText = (
-  <>
-    <Heading>Independent impact-led UK brands</Heading>
-    Social enterprises are small businesses frustrated with the state of affairs. Their social
-    mission is at the heart of what they do, so they're in the business of making a real difference
-    in the world with every purchase. We bring together the very best of them and verify their
-    impact through a partnership with Good Market. It's our ambition to help them create even more
-    positive impact.
-  </>
-);
-
-const shoppersText = (
-  <>
-    <Heading>Socially conscious shoppers</Heading>
-    Feeling frustrated with unethical companies, greenwashing, online orders that show up in plastic
-    packaging? We want to make it easier for you to shop without compromising your values or
-    sacrificing on quality. We promise to prioritise sustainability and transparency in everything
-    we do, as do our brand partners. Learn more about our impact and sustainability policies.
-  </>
-);
-
-const employersText = (
-  <>
-    <Heading>Employers with a conscience</Heading>
-    It's long been known companies are big drivers of change. We help them to buy more ethically
-    from purpose-driven brands, as well as measure their positive impact. Everything from employee
-    Christmas gifts to coffee in the office kitchen can help to get us closer to the UN's
-    Sustainable Development Goals. We see a future where buying social is the ordinary, expected —
-    and measured. Get your company to join the mission.
-  </>
-);
+const sections = [blue, darkBlue, 'planet', darkBlue, blue];
+const scaleSize = 1.35;
 
 const App: React.FC = (): JSX.Element => {
   const sectionRef = useRef(null);
@@ -134,6 +105,39 @@ const App: React.FC = (): JSX.Element => {
   const shoppersTextRef = useRef(null);
   const employersTextRef = useRef(null);
 
+  const text = [
+    {
+      ref: brandsTextRef,
+      heading: 'Independent impact-led UK brands',
+      description: `Social enterprises are small businesses frustrated with the state of affairs.
+        Their social mission is at the heart of what they do, so they're in the business of making
+        a real difference in the world with every purchase. We bring together the very best of them
+        and verify their impact through a partnership with Good Market. It's our ambition to help
+        them create even more positive impact.`,
+      isAbsolutePosition: false,
+    },
+    {
+      ref: shoppersTextRef,
+      heading: 'Socially conscious shoppers',
+      description: `Feeling frustrated with unethical companies, greenwashing, online orders that
+        show up in plastic packaging? We want to make it easier for you to shop without compromising
+        your values or sacrificing on quality. We promise to prioritise sustainability and
+        transparency in everything we do, as do our brand partners. Learn more about our impact and
+        sustainability policies.`,
+      isAbsolutePosition: true,
+    },
+    {
+      ref: employersTextRef,
+      heading: 'Employers with a conscience',
+      description: `It's long been known companies are big drivers of change. We help them to buy
+        more ethically from purpose-driven brands, as well as measure their positive impact.
+        Everything from employee Christmas gifts to coffee in the office kitchen can help to get us
+        closer to the UN's Sustainable Development Goals. We see a future where buying social is the
+        ordinary, expected — and measured. Get your company to join the mission.`,
+      isAbsolutePosition: true,
+    },
+  ];
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -144,6 +148,65 @@ const App: React.FC = (): JSX.Element => {
       scrub: 1,
     };
 
+    const animations = [
+      {
+        ref: rotationContainerRef.current,
+        keyframes: {
+          '0%': { rotate: 0 },
+          '50%': { rotate: 120 },
+          '100%': { rotate: 240 },
+        },
+      },
+      {
+        ref: brandsRef.current,
+        keyframes: {
+          '0%': { rotate: 360, scale: scaleSize },
+          '50%': { rotate: 240, scale: 1 },
+          '100%': { rotate: 120, scale: 1 },
+        },
+      },
+      {
+        ref: shoppersRef.current,
+        keyframes: {
+          '0%': { rotate: 360, scale: 1 },
+          '50%': { rotate: 240, scale: scaleSize },
+          '100%': { rotate: 120, scale: 1 },
+        },
+      },
+      {
+        ref: employersRef.current,
+        keyframes: {
+          '0%': { rotate: 360, scale: 1 },
+          '50%': { rotate: 240, scale: 1 },
+          '100%': { rotate: 120, scale: scaleSize },
+        },
+      },
+      {
+        ref: brandsTextRef.current,
+        keyframes: {
+          '0%': { yPercent: 0, opacity: 1 },
+          '50%': { yPercent: -125, opacity: 0 },
+          '100%': { yPercent: -125, opacity: 0 },
+        },
+      },
+      {
+        ref: shoppersTextRef.current,
+        keyframes: {
+          '0%': { yPercent: 125, opacity: 0 },
+          '50%': { yPercent: 0, opacity: 1 },
+          '100%': { yPercent: -125, opacity: 0 },
+        },
+      },
+      {
+        ref: employersTextRef.current,
+        keyframes: {
+          '0%': { yPercent: 125, opacity: 0 },
+          '50%': { yPercent: 125, opacity: 0 },
+          '100%': { yPercent: 0, opacity: 1 },
+        },
+      },
+    ];
+
     gsap.to(sectionRef.current, {
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -152,68 +215,12 @@ const App: React.FC = (): JSX.Element => {
       },
     });
 
-    gsap.to(rotationContainerRef.current, {
-      scrollTrigger: scrollTrigger,
-      keyframes: {
-        '0%': { rotate: 0 },
-        '50%': { rotate: 120 },
-        '100%': { rotate: 240 },
-      },
-    });
-
-    gsap.to(brandsRef.current, {
-      scrollTrigger: scrollTrigger,
-      keyframes: {
-        '0%': { rotate: 360, scale: 1.35 },
-        '50%': { rotate: 240, scale: 1 },
-        '100%': { rotate: 120, scale: 1 },
-      },
-    });
-
-    gsap.to(shoppersRef.current, {
-      scrollTrigger: scrollTrigger,
-      keyframes: {
-        '0%': { rotate: 360, scale: 1 },
-        '50%': { rotate: 240, scale: 1.35 },
-        '100%': { rotate: 120, scale: 1 },
-      },
-    });
-
-    gsap.to(employersRef.current, {
-      scrollTrigger: scrollTrigger,
-      keyframes: {
-        '0%': { rotate: 360, scale: 1 },
-        '50%': { rotate: 240, scale: 1 },
-        '100%': { rotate: 120, scale: 1.35 },
-      },
-    });
-
-    gsap.to(brandsTextRef.current, {
-      scrollTrigger: scrollTrigger,
-      keyframes: {
-        '0%': { yPercent: 0, opacity: 1 },
-        '50%': { yPercent: -125, opacity: 0 },
-        '100%': { yPercent: -125, opacity: 0 },
-      },
-    });
-
-    gsap.to(shoppersTextRef.current, {
-      scrollTrigger: scrollTrigger,
-      keyframes: {
-        '0%': { yPercent: 125, opacity: 0 },
-        '50%': { yPercent: 0, opacity: 1 },
-        '100%': { yPercent: -125, opacity: 0 },
-      },
-    });
-
-    gsap.to(employersTextRef.current, {
-      scrollTrigger: scrollTrigger,
-      keyframes: {
-        '0%': { yPercent: 125, opacity: 0 },
-        '50%': { yPercent: 125, opacity: 0 },
-        '100%': { yPercent: 0, opacity: 1 },
-      },
-    });
+    animations.map(({ ref, keyframes }) =>
+      gsap.to(ref, {
+        scrollTrigger: scrollTrigger,
+        keyframes: keyframes,
+      })
+    );
 
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
@@ -223,37 +230,32 @@ const App: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <EmptySection color={blue}>
-        <SectionHeading>Section 1</SectionHeading>
-      </EmptySection>
-      <EmptySection color={darkBlue}>
-        <SectionHeading>Section 2</SectionHeading>
-      </EmptySection>
-      <PlanetSection ref={sectionRef}>
-        <PlanetContainer ref={containerRef}>
-          <Planet />
-          <RotationContainer ref={rotationContainerRef}>
-            <Brands ref={brandsRef} />
-            <Shoppers ref={shoppersRef} />
-            <Employers ref={employersRef} />
-          </RotationContainer>
-        </PlanetContainer>
-        <TextContainer>
-          <Text ref={brandsTextRef}>{brandsText}</Text>
-          <Text ref={shoppersTextRef} isAbsolutePosition>
-            {shoppersText}
-          </Text>
-          <Text ref={employersTextRef} isAbsolutePosition>
-            {employersText}
-          </Text>
-        </TextContainer>
-      </PlanetSection>
-      <EmptySection color={darkBlue}>
-        <SectionHeading>Section 4</SectionHeading>
-      </EmptySection>
-      <EmptySection color={blue}>
-        <SectionHeading>Section 5</SectionHeading>
-      </EmptySection>
+      {sections.map((section, i) => {
+        return section === 'planet' ? (
+          <PlanetSection ref={sectionRef} key={section + i}>
+            <PlanetContainer ref={containerRef}>
+              <Planet />
+              <RotationContainer ref={rotationContainerRef}>
+                <Brands ref={brandsRef} />
+                <Shoppers ref={shoppersRef} />
+                <Employers ref={employersRef} />
+              </RotationContainer>
+            </PlanetContainer>
+            <TextContainer>
+              {text.map(({ ref, heading, description, isAbsolutePosition }) => (
+                <Text ref={ref} isAbsolutePosition={isAbsolutePosition} key={heading}>
+                  <Heading>{heading}</Heading>
+                  {description}
+                </Text>
+              ))}
+            </TextContainer>
+          </PlanetSection>
+        ) : (
+          <EmptySection color={section} key={section + i}>
+            <SectionHeading>Section {i + 1}</SectionHeading>
+          </EmptySection>
+        );
+      })}
     </>
   );
 };
