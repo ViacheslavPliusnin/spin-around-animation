@@ -34,6 +34,14 @@ const PlanetSection = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+  @media (max-width: 1200px) {
+    justify-content: space-between;
+    padding: 100px 60px;
+  }
+  @media (max-width: 1080px) {
+    padding: 100px 30px;
+  }
 `;
 
 const PlanetContainer = styled.div`
@@ -77,6 +85,12 @@ const TextContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 40%;
+  max-width: 650px;
+
+  @media (max-width: 1080px) {
+    width: 35%;
+  }
 `;
 
 const Heading = styled.h2`
@@ -88,7 +102,6 @@ const Text = styled.p<{ isAbsolutePosition?: boolean }>`
   color: ${white};
   font-size: 20px;
   font-weight: 500;
-  max-width: 650px;
 `;
 
 const sections = [blue, darkBlue, 'planet', darkBlue, blue];
