@@ -115,10 +115,10 @@ const Employers = styled(EmployersIcon)`
   left: 120px;
 `;
 
-const TextContainer = styled.div`
+const TextContainer = styled.div<{ rows: number }>`
   position: relative;
   display: grid;
-  grid-template-rows: repeat(3, 100vh);
+  grid-template-rows: ${({ rows }) => `repeat(${rows}, 100vh)`};
   width: 40%;
   max-width: 650px;
 
@@ -221,7 +221,7 @@ const App: React.FC = (): JSX.Element => {
                 </RotationContainer>
               </Planet>
             </PlanetContainer>
-            <TextContainer>
+            <TextContainer rows={text.length}>
               {text.map(({ heading, description }) => (
                 <Text key={heading}>
                   <Heading>{heading}</Heading>
