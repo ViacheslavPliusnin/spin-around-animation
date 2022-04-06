@@ -20,7 +20,6 @@ const text = [
       a real difference in the world with every purchase. We bring together the very best of them
       and verify their impact through a partnership with Good Market. It's our ambition to help
       them create even more positive impact.`,
-    isAbsolutePosition: false,
   },
   {
     heading: 'Socially conscious shoppers',
@@ -29,7 +28,6 @@ const text = [
       your values or sacrificing on quality. We promise to prioritise sustainability and
       transparency in everything we do, as do our brand partners. Learn more about our impact and
       sustainability policies.`,
-    isAbsolutePosition: true,
   },
   {
     heading: 'Employers with a conscience',
@@ -38,7 +36,6 @@ const text = [
       Everything from employee Christmas gifts to coffee in the office kitchen can help to get us
       closer to the UN's Sustainable Development Goals. We see a future where buying social is the
       ordinary, expected — and measured. Get your company to join the mission.`,
-    isAbsolutePosition: true,
   },
 ];
 
